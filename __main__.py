@@ -12,7 +12,6 @@ def client():
         while True:
             conn.send('next'.encode())
             chunk = conn.recv(2048)
-            print(len(chunk))
             if chunk:
                 index, new_chunk = int.from_bytes(chunk[:1], byteorder='big'), chunk[1:]
                 chunk_list.append((index, new_chunk))
@@ -28,7 +27,6 @@ def client():
 
 
 def main():
-    client()
     path = client()
     app = QtWidgets.QApplication([])
     label = QtWidgets.QLabel()
